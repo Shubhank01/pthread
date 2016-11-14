@@ -31,7 +31,7 @@ int my_pthread_exit(void *value_ptr)
 int my_pthread_join(my_pthread_t thread, void ** value_ptr)
 {
 
-	printf("the join has started%d", thread.st);
+	printf("the join has started%d\n", thread.st);
 	//printf("%d\n", getStatus(&thread));
 	//target thread
 	
@@ -45,7 +45,7 @@ int my_pthread_join(my_pthread_t thread, void ** value_ptr)
 	}
 	//
 	//value_ptr = &(thread.retval);
-	printf("Join ended");
+	printf("Join ended\n");
 	return 0;
 }
 

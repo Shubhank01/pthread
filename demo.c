@@ -4,6 +4,8 @@
 
 #define STACKSIZE 64000
 
+my_pthread_t t1, t2, t3, t4, t5,t6,t7;
+
 void* func(void * value) 
 {
 	int v = (int)value;
@@ -71,7 +73,7 @@ void* func6(void *value)
 	while(i<50)
 	{
 		i++;
-		printf("In function 6");
+		printf("In function 6\n");
 	}
 	printf("Finished end of 6\n");
 
@@ -79,14 +81,17 @@ void* func6(void *value)
 
 void* func7(void *value)
 {
+
 	int i=0;
 	while(i<50)
 	{
 		i++;
 		printf("In function 7\n");
 	}
-	//int a = 10;
-	my_pthread_exit(NULL);
+	printf("Finished end of 7\n");
+
+	my_pthread_join(t6, NULL);
+	//my_pthread_exit(NULL);
 	
 }
 
@@ -104,22 +109,23 @@ int main()
 {	
 	my_pthread_mutex_init(&mut, NULL);
 	printf("Main initialized\n");
-	my_pthread_t t1, t2, t3, t4, t5,t6,t7;
+	
 	/*my_pthread_create(&t1,NULL, &func, (void*)7);
 	my_pthread_create(&t2,NULL, &func2, NULL);
 	my_pthread_create(&t3,NULL, &func3, NULL);*/
-	my_pthread_create(&t5, NULL, &func5, NULL);
-	my_pthread_create(&t4, NULL, &func4, NULL);
-	my_pthread_create(&t6,NULL,&func6,NULL);
+	//my_pthread_create(&t5, NULL, &func5, NULL);
+	//my_pthread_create(&t4, NULL, &func4, NULL);
+	
 	my_pthread_create(&t7,NULL,&func7,NULL);
+	my_pthread_create(&t6,NULL,&func6,NULL);
 
 	//printf("status %d",t7.st);
 	//printf("status %d",t6.st);
 	
 	//int **a;
-	printf("%d\n", t7.st);
-	printf("%d\n", t7.st);
-	my_pthread_join(t7, NULL);
+	//printf("%d\n", t7.st);
+	//printf("%d\n", t7.st);
+	//my_pthread_join(t7, NULL);
 	//printf("Hello World%d\n", a);
 
 	while(1)
